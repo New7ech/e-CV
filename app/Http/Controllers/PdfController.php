@@ -10,7 +10,15 @@ class PdfController extends Controller
 {
     public function generate(Cv $cv)
     {
-        $pdf = Pdf::loadView('cv.template', ['cv' => $cv]);
+        $template = $cv->template ?? 'default';
+        $view = "cv.templates.{$template}";
+
+        if (!view()->exists($view)) {
+            // Fallback to a default template if the specific one doesn't exist
+            $view = 'cv.template';
+        }
+
+        $pdf = Pdf::loadView($view, ['cv' => $cv]);
         return $pdf->stream('cv.pdf');
     }
 }

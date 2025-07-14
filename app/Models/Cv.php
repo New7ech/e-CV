@@ -17,6 +17,7 @@ class Cv extends Model
         'adresse',
         'photo',
         'objectif',
+        'template',
     ];
 
     public function experiences()

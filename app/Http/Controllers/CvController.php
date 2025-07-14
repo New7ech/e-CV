@@ -8,14 +8,18 @@ use Illuminate\Support\Facades\Storage;
 
 class CvController extends Controller
 {
-    public function create()
+    public function create(string $template)
     {
-        return view('cv.create');
+        if (!view()->exists("cv.forms.{$template}_form")) {
+            abort(404);
+        }
+        return view("cv.forms.{$template}_form", compact('template'));
     }
 
     public function store(Request $request)
     {
         $validatedData = $request->validate([
+            'template' => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
             'nom' => 'required|string|max:255',
             'email' => 'required|email|max:255',

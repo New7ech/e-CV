@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('adresse');
             $table->string('photo')->nullable();
             $table->text('objectif')->nullable();
+            $table->string('template')->default('default');
             $table->timestamps();
         });
     }
