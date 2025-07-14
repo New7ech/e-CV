@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Storage;
 
 class CvController extends Controller
 {
+<<<<<<< HEAD
+    public function create(Request $request)
+=======
 /*************  ✨ Windsurf Command ⭐  *************/
     /**
      * Affiche le formulaire pour créer un CV avec un template spécifique
@@ -17,8 +20,10 @@ class CvController extends Controller
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException si le template n'existe pas
      */
 /*******  de7c0909-4127-409c-aa91-a5aa6842fc10  *******/    public function create()
+>>>>>>> main
     {
-        return view('cv.create');
+        $template = $request->get('template', 'default');
+        return view('cv.create', ['template' => $template]);
     }
 
     public function store(Request $request)
@@ -31,6 +36,7 @@ class CvController extends Controller
             'adresse' => 'nullable|string|max:255',
             'objectif' => 'nullable|string',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'template' => 'required|string|in:classic,modern,minimalist',
             'experiences' => 'nullable|array',
             'experiences.*.poste' => 'nullable|string|max:255',
             'experiences.*.entreprise' => 'nullable|string|max:255',
@@ -70,6 +76,6 @@ class CvController extends Controller
             }
         }
 
-        return redirect()->route('cv.pdf', $cv);
+        return redirect()->route('cv.pdf', ['cv' => $cv, 'template' => $validatedData['template']]);
     }
 }

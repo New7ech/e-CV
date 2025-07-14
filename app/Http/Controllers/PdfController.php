@@ -8,9 +8,16 @@ use Illuminate\Http\Request;
 
 class PdfController extends Controller
 {
-    public function generate(Cv $cv)
+    public function generate(Request $request, Cv $cv)
     {
-        $pdf = Pdf::loadView('cv.template', ['cv' => $cv]);
+        $template = $request->get('template', 'classic');
+        $view = 'cv.templates.' . $template;
+
+        if (!view()->exists($view)) {
+            abort(404, "Template not found");
+        }
+
+        $pdf = Pdf::loadView($view, ['cv' => $cv]);
         return $pdf->stream('cv.pdf');
     }
 }
