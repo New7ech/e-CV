@@ -8,18 +8,22 @@ use Illuminate\Support\Facades\Storage;
 
 class CvController extends Controller
 {
-    public function create(string $template)
+/*************  ✨ Windsurf Command ⭐  *************/
+    /**
+     * Affiche le formulaire pour créer un CV avec un template spécifique
+     *
+     * @param string $template Le nom du template à utiliser
+     * @return \Illuminate\Http\Response
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException si le template n'existe pas
+     */
+/*******  de7c0909-4127-409c-aa91-a5aa6842fc10  *******/    public function create()
     {
-        if (!view()->exists("cv.forms.{$template}_form")) {
-            abort(404);
-        }
-        return view("cv.forms.{$template}_form", compact('template'));
+        return view('cv.create');
     }
 
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'template' => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
             'nom' => 'required|string|max:255',
             'email' => 'required|email|max:255',
