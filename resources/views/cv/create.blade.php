@@ -24,6 +24,7 @@
         }">
             <form action="{{ route('cv.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                <input type="hidden" name="template" value="{{ request('template', 'default') }}">
 
                 <!-- Informations Personnelles -->
                 <section class="mb-8">

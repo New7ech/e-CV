@@ -22,30 +22,33 @@
 
             <main>
                 <div class="flex flex-wrap -mx-4">
-                    <div class="w-full md:w-1/3 px-4 mb-8">
+                    <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-8">
                         <div class="rounded-lg bg-white p-6 shadow-lg">
+                            <img src="https://via.placeholder.com/300x400.png?text=Modèle+Classique" alt="Modèle Classique" class="rounded-lg mb-4">
                             <h2 class="text-2xl font-bold mb-4">Modèle Classique</h2>
                             <p class="text-gray-600 mb-4">Un design sobre et élégant, parfait pour les secteurs traditionnels.</p>
-                            <a href="{{ route('cv.create') }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                Créer mon CV
+                            <a href="{{ route('cv.create', ['template' => 'classic']) }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                Choisir ce modèle
                             </a>
                         </div>
                     </div>
-                    <div class="w-full md:w-1/3 px-4 mb-8">
+                    <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-8">
                         <div class="rounded-lg bg-white p-6 shadow-lg">
+                            <img src="https://via.placeholder.com/300x400.png?text=Modèle+Moderne" alt="Modèle Moderne" class="rounded-lg mb-4">
                             <h2 class="text-2xl font-bold mb-4">Modèle Moderne</h2>
                             <p class="text-gray-600 mb-4">Mettez en avant votre créativité avec ce modèle audacieux.</p>
-                            <a href="{{ route('cv.create') }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                Créer mon CV
+                            <a href="{{ route('cv.create', ['template' => 'modern']) }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                Choisir ce modèle
                             </a>
                         </div>
                     </div>
-                    <div class="w-full md:w-1/3 px-4 mb-8">
+                    <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-8">
                         <div class="rounded-lg bg-white p-6 shadow-lg">
+                            <img src="https://via.placeholder.com/300x400.png?text=Modèle+Minimaliste" alt="Modèle Minimaliste" class="rounded-lg mb-4">
                             <h2 class="text-2xl font-bold mb-4">Modèle Minimaliste</h2>
                             <p class="text-gray-600 mb-4">Un CV épuré qui va droit à l'essentiel.</p>
-                            <a href="{{ route('cv.create') }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                Créer mon CV
+                            <a href="{{ route('cv.create', ['template' => 'minimalist']) }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                Choisir ce modèle
                             </a>
                         </div>
                     </div>

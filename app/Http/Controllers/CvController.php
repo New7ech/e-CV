@@ -8,9 +8,10 @@ use Illuminate\Support\Facades\Storage;
 
 class CvController extends Controller
 {
-    public function create()
+    public function create(Request $request)
     {
-        return view('cv.create');
+        $template = $request->get('template', 'default');
+        return view('cv.create', ['template' => $template]);
     }
 
     public function store(Request $request)
@@ -23,6 +24,7 @@ class CvController extends Controller
             'adresse' => 'nullable|string|max:255',
             'objectif' => 'nullable|string',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'template' => 'required|string|in:classic,modern,minimalist',
             'experiences' => 'nullable|array',
             'experiences.*.poste' => 'nullable|string|max:255',
             'experiences.*.entreprise' => 'nullable|string|max:255',
@@ -62,6 +64,6 @@ class CvController extends Controller
             }
         }
 
-        return redirect()->route('cv.pdf', $cv);
+        return redirect()->route('cv.pdf', ['cv' => $cv, 'template' => $validatedData['template']]);
     }
 }
