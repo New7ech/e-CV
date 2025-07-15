@@ -34,4 +34,9 @@ class Cv extends Model
     {
         return $this->hasMany(Skill::class);
     }
+
+    public function views()
+    {
+        return $this->hasMany(CvView::class);
+    }
 }
