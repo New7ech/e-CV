@@ -8,8 +8,17 @@ use Illuminate\Http\Request;
 
 class PdfController extends Controller
 {
+use App\Models\CvView;
+
     public function generate(Request $request, Cv $cv)
     {
+        // Track the view
+        CvView::create([
+            'cv_id' => $cv->id,
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->header('User-Agent'),
+        ]);
+
         $template = $request->get('template', 'classic');
         $view = 'cv.templates.' . $template;
 

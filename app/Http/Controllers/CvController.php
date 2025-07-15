@@ -10,8 +10,17 @@ class CvController extends Controller
 {
     public function create(Request $request)
     {
-        $template = $request->get('template', 'default');
-        return view('cv.create', ['template' => $template]);
+        $templates = ['classic', 'modern', 'minimalist', 'creative'];
+        $template = $request->get('template', 'modern');
+
+        if (!in_array($template, $templates)) {
+            abort(404, "Le template demandé n'existe pas.");
+        }
+
+        return view('cv.create', [
+            'templates' => $templates,
+            'currentTemplate' => $template
+        ]);
     }
 
     public function store(Request $request)
@@ -24,7 +33,7 @@ class CvController extends Controller
             'adresse' => 'nullable|string|max:255',
             'objectif' => 'nullable|string',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'template' => 'required|string|in:classic,modern,minimalist',
+            'template' => 'required|string|in:classic,modern,minimalist,creative',
             'experiences' => 'nullable|array',
             'experiences.*.poste' => 'nullable|string|max:255',
             'experiences.*.entreprise' => 'nullable|string|max:255',
